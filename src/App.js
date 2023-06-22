@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Form from "./components/Form";
+import Home from "./components/Home";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Summary from "./components/Summary";
+import Navbar from "./components/Navbar";
+import { AppProvider, useGlobalContext } from "./context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <Router>
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/addBill" element={<Form />}></Route>
+          <Route path="/editBill/:id" element={<Form />}></Route>
+          <Route path="/invoice/:id" element={<Summary />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+        </Routes>
+      </Router>
+    </AppProvider>
   );
 }
 
